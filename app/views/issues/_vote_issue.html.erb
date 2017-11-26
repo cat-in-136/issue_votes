@@ -3,13 +3,13 @@
     <% if @already_voted.nil? %>
       <td><b>Votes: </b> <%= @issue.votes_total %>
         <% if User.current.allowed_to?(:vote_issue, @project) %>
-          <a class ='icon icon-vote-issue' href='/issue_votes/vote?issue_id=<%= @issue.id %>'>Vote</a>
+          <%= link_to 'Vote', add_issue_vote_path(:issue_id => @issue.id), :class => 'icon icon-vote-issue' %>
         <% end %>
       </td>
     <% else %>
       <td><b>Votes: </b><%= @issue.votes_total %>
         <% if User.current.allowed_to?(:vote_issue, @project) %>
-        <a class ='icon icon-already-voted'>Already voted</a>(<a class ='icon icon-remove-vote' href='/issue_votes/remove?issue_id=<%= @issue.id %>'></a>)
+        <span class ='icon icon-already-voted'>Already voted(<%= link_to '', remove_issue_vote_path(:issue_id => @issue.id), :class => 'icon icon-remove-vote'%>)</span>
         <% end %>
       </td>
     <% end %>

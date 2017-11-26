@@ -20,7 +20,7 @@
       <tbody>
       <% @votes_rows.each do |user_vote| %>
         <tr>
-          <td><a href="/users/<%= user_vote[:user_id] %>"><%= user_vote[:Login] %></a></td>
+          <td><%= link_to user_vote[:Login], user_path(:id => user_vote[:user_id]) %></td>
           <td><%= user_vote[:Name] %></td>
           <td><%= mail_to(user_vote[:Mail]) %></td>
           <td><%= format_time(user_vote[:'Voted on']) %></td>
